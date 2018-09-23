@@ -26,5 +26,10 @@ public class ODog extends OrganicPet {
 	public void resetPoopChance() {
 		poopChance = 1;
 	}
+	@Override
+	public int poop() {
+		int semiRandomPoopAmount = (int) (Math.random() * 3) + 1;
+		return semiRandomPoopAmount;
+	}
 
 }

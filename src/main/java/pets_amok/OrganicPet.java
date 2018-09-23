@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class OrganicPet extends Pets {
+public abstract class OrganicPet extends Pets {
 
 	protected int thirst;
 	protected int hunger;
@@ -24,5 +24,5 @@ public class OrganicPet extends Pets {
 	public void water() {
 		thirst -= 5;
 	}
-
+	public abstract int poop();
 }
