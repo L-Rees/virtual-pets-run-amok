@@ -106,6 +106,18 @@ public class ShelterTest {
 		int cageAfter = underTest.getCageSoilLevel(odog.getName());
 		assertThat(cageAfter, is(0));
 	}
-	
-	
+	@Test
+	public void shouldBeAbleToAdoptAPet() {
+		underTest.putODog(odog.getName(), odog);
+		underTest.adoptpet(odog.getName());
+		Collection<ODog> odogs = underTest.getAllODogs();
+		assertThat(odogs.size(), is(0));
+	}
+	@Test
+	public void rustLevelIncreasesWithTick() {
+		underTest.putRCat(rcat.getName(), rcat);
+		underTest.tick();
+		int check = underTest.getRustLevel(rcat.getName());
+		assertThat(check, is(11));
+	}
 }

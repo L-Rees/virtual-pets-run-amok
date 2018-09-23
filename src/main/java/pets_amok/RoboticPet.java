@@ -24,5 +24,9 @@ public class RoboticPet extends Pets {
 	public void oil() {
 		rustLevel -= 7;		
 	}
+	public void increaseRust() {
+		rustLevel +=1;
+		
+	}
 
 }
