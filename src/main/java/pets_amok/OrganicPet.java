@@ -36,5 +36,5 @@ public abstract class OrganicPet extends Pet {
 		wellBeing +=3;
 	}
 
-	public abstract int poop();
+	public abstract int poopAmount();
 }

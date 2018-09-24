@@ -35,7 +35,7 @@ public class ODog extends OrganicPet  implements Walkies {
 		poopChance = 1;
 	}
 	@Override
-	public int poop() {
+	public int poopAmount() {
 		int semiRandomPoopAmount = (int) (Math.random() * 3) + 1;
 		return semiRandomPoopAmount;
 	}

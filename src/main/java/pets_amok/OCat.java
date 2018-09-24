@@ -18,7 +18,7 @@ public class OCat extends OrganicPet {
 	}
 
 	@Override
-	public int poop() {
+	public int poopAmount() {
 		int semiRandomPoopAmount = (int) (Math.random() * 3) + 1;
 		return semiRandomPoopAmount;		
 	}
