@@ -9,8 +9,7 @@ public class Shelter {
 	HashMap<String, RDog> rDogs = new HashMap<String, RDog>();
 	HashMap<String, RCat> rCats = new HashMap<String, RCat>();
 	HashMap<String, Cage> cages = new HashMap<String, Cage>();
-	
-	
+
 	private int litterboxSoilLevel;
 	private int adoptedPetCount;
 
@@ -164,24 +163,31 @@ public class Shelter {
 		increaseAllBoredom();
 		increasePoop();
 		checkWellBeing();
+		resetODogsPoopChance();
+	}
+
+	private void resetODogsPoopChance() {
+		for (ODog odog : oDogs.values()) {
+			odog.resetPoopChance();
+		}
 	}
 
 	private void checkWellBeing() {
 
-		//check poop level of litterbox, +- all cats' wellbeing 
-		//check poop level in cages, +- the corresponding dog's wellbeing
-		//check boredom, thirst, and hunger in opets, +- each's wellbeing
-		//check boredom, rust, and charge in rpets, +- each's wellbeing
-		
-		if (getLitterboxSoilLevel()>8) {
-			for(OCat ocat : oCats.values()) {
+		// check poop level of litterbox, +- all cats' wellbeing
+		// check poop level in cages, +- the corresponding dog's wellbeing
+		// check boredom, thirst, and hunger in opets, +- each's wellbeing
+		// check boredom, rust, and charge in rpets, +- each's wellbeing
+
+		if (getLitterboxSoilLevel() > 8) {
+			for (OCat ocat : oCats.values()) {
 				ocat.decreaseWellBeing(4);
 			}
-		}else if (getLitterboxSoilLevel()>6) {
+		} else if (getLitterboxSoilLevel() > 6) {
 			for (OCat ocat : oCats.values()) {
 				ocat.decreaseWellBeing(2);
 			}
-		}else if (getLitterboxSoilLevel()<=3) {
+		} else if (getLitterboxSoilLevel() <= 3) {
 			for (OCat ocat : oCats.values()) {
 				ocat.increaseWellBeing(4);
 			}
@@ -191,9 +197,30 @@ public class Shelter {
 			int hungriness = odog.getHunger();
 			int boredness = odog.getBoredom();
 			int thirstiness = odog.getThirst();
-			
+			int modifier = (thirstiness + boredness + hungriness - dirtiness) / 2;
+			odog.decreaseWellBeing(modifier);
 		}
-		
+		for (OCat ocat : oCats.values()) {
+			int hungriness = ocat.getHunger();
+			int boredness = ocat.getBoredom();
+			int thirstiness = ocat.getThirst();
+			int modifier = (thirstiness + boredness + hungriness) / 2;
+			ocat.decreaseWellBeing(modifier);
+		}
+		for (RDog rdog : rDogs.values()) {
+			int boredness = rdog.getBoredom();
+			int rustiness = rdog.getRustLevel();
+			int power = rdog.getChargeLevel();
+			int modifier = (boredness + rustiness - power) / 2;
+			rdog.decreaseWellBeing(modifier);
+		}
+		for (RCat rcat : rCats.values()) {
+			int boredness = rcat.getBoredom();
+			int rustiness = rcat.getRustLevel();
+			int power = rcat.getChargeLevel();
+			int modifier = (boredness + rustiness - power) / 2;
+			rcat.decreaseWellBeing(modifier);
+		}
 	}
 
 	private void increaseAllBoredom() {

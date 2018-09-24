@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class ODog extends OrganicPet implements Walkies {
+public class ODog extends OrganicPet  implements Walkies {
 
 	private int poopChance = 1;  //will be 0 if walked, 1 if they weren't. resets to 1 at tick.
 

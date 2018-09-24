@@ -27,5 +27,6 @@ public class Pet {
 	}
 	public void play() {
 		boredom -= 5;
+		wellBeing +=5;
 	}
 }

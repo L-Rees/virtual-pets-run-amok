@@ -19,17 +19,20 @@ public class RoboticPet extends Pet {
 
 	public void charge() {
 		chargeLevel += 8;
+		wellBeing += 5;
 	}
 
 	public void oil() {
-		rustLevel -= 7;		
+		rustLevel -= 7;
+		wellBeing += 3;
 	}
+
 	public void increaseRust() {
-		rustLevel +=1;
+		rustLevel += 1;
 	}
+
 	public void decreaseCharge() {
 		chargeLevel -= 2;
 	}
-	
 
 }

@@ -20,6 +20,7 @@ public abstract class OrganicPet extends Pet {
 	public void feed() {
 		hunger -= 5;
 		thirst += 3;
+		wellBeing += 5;
 	}
 
 	public void increaseHunger() {
@@ -32,8 +33,8 @@ public abstract class OrganicPet extends Pet {
 
 	public void water() {
 		thirst -= 5;
+		wellBeing +=3;
 	}
-	
 
 	public abstract int poop();
 }
