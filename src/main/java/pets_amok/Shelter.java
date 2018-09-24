@@ -9,6 +9,8 @@ public class Shelter {
 	HashMap<String, RDog> rDogs = new HashMap<String, RDog>();
 	HashMap<String, RCat> rCats = new HashMap<String, RCat>();
 	HashMap<String, Cage> cages = new HashMap<String, Cage>();
+	
+	
 	private int litterboxSoilLevel;
 	private int adoptedPetCount;
 
@@ -90,7 +92,7 @@ public class Shelter {
 	}
 
 	public void cleanLitterbox() {
-		litterboxSoilLevel -= 10;
+		litterboxSoilLevel = 0;
 	}
 
 	public void increasePoop() {
@@ -114,37 +116,42 @@ public class Shelter {
 			cage.clean();
 		}
 	}
-		
+
 	public void playWithODog(String name) {
 		oDogs.get(name).play();
 	}
+
 	public void playWithOCat(String name) {
 		oCats.get(name).play();
 	}
+
 	public void playWithRCat(String name) {
 		rCats.get(name).play();
 	}
+
 	public void playWithRDog(String name) {
 		rDogs.get(name).play();
 	}
-		//if this is true, app should prompt for a different name on intake.
+
+	// if this is true, app should prompt for a different name on intake.
 	public boolean nameCheck(String name) {
-		return (rDogs.containsKey(name) && rCats.containsKey(name) && oDogs.containsKey(name) && oCats.containsKey(name));
+		return (rDogs.containsKey(name) && rCats.containsKey(name) && oDogs.containsKey(name)
+				&& oCats.containsKey(name));
 	}
 
 	public void adoptpet(String name) {
 		if (oDogs.containsKey(name)) {
 			oDogs.remove(name);
-		}else if(oCats.containsKey(name)) {
+		} else if (oCats.containsKey(name)) {
 			oCats.remove(name);
-		}else if(rDogs.containsKey(name)) {
+		} else if (rDogs.containsKey(name)) {
 			rDogs.remove(name);
-		}else if(rCats.containsKey(name)) {
+		} else if (rCats.containsKey(name)) {
 			rCats.remove(name);
 		}
-		adoptedPetCount ++;
+		adoptedPetCount++;
 	}
-	
+
 	public int getAdoptedPetCount() {
 		return adoptedPetCount;
 	}
@@ -155,10 +162,42 @@ public class Shelter {
 		increaseAllHunger();
 		increaseAllThirst();
 		increaseAllBoredom();
+		increasePoop();
+		checkWellBeing();
+	}
+
+	private void checkWellBeing() {
+
+		//check poop level of litterbox, +- all cats' wellbeing 
+		//check poop level in cages, +- the corresponding dog's wellbeing
+		//check boredom, thirst, and hunger in opets, +- each's wellbeing
+		//check boredom, rust, and charge in rpets, +- each's wellbeing
+		
+		if (getLitterboxSoilLevel()>8) {
+			for(OCat ocat : oCats.values()) {
+				ocat.decreaseWellBeing(4);
+			}
+		}else if (getLitterboxSoilLevel()>6) {
+			for (OCat ocat : oCats.values()) {
+				ocat.decreaseWellBeing(2);
+			}
+		}else if (getLitterboxSoilLevel()<=3) {
+			for (OCat ocat : oCats.values()) {
+				ocat.increaseWellBeing(4);
+			}
+		}
+		for (ODog odog : oDogs.values()) {
+			int dirtiness = getCageSoilLevel(odog.getName());
+			int hungriness = odog.getHunger();
+			int boredness = odog.getBoredom();
+			int thirstiness = odog.getThirst();
+			
+		}
+		
 	}
 
 	private void increaseAllBoredom() {
-		for(ODog odog : getAllODogs()) {
+		for (ODog odog : getAllODogs()) {
 			odog.increaseBoredom();
 		}
 		for (OCat ocat : getAllOCats()) {
@@ -167,24 +206,26 @@ public class Shelter {
 		for (RDog rdog : getAllRDogs()) {
 			rdog.increaseBoredom();
 		}
-		for (RCat rcat : getAllRCats()){
+		for (RCat rcat : getAllRCats()) {
 			rcat.increaseBoredom();
 		}
 	}
 
 	private void increaseAllThirst() {
-		for(ODog odog : getAllODogs()) {
+		for (ODog odog : getAllODogs()) {
 			odog.increaseThirst();
-		}for (OCat ocat : getAllOCats()) {
+		}
+		for (OCat ocat : getAllOCats()) {
 			ocat.increaseThirst();
 		}
-		
+
 	}
 
 	private void increaseAllHunger() {
-		for(ODog odog : getAllODogs()) {
+		for (ODog odog : getAllODogs()) {
 			odog.increaseHunger();
-		}for (OCat ocat : getAllOCats()) {
+		}
+		for (OCat ocat : getAllOCats()) {
 			ocat.increaseHunger();
 		}
 	}
@@ -195,7 +236,7 @@ public class Shelter {
 		}
 		for (RCat rcat : getAllRCats()) {
 			rcat.decreaseCharge();
-		} 
+		}
 	}
 
 	private void increaseAllRust() {
@@ -210,7 +251,7 @@ public class Shelter {
 	public int getRustLevel(String name) {
 		if (rDogs.containsKey(name)) {
 			return rDogs.get(name).getRustLevel();
-		}else {
+		} else {
 			return rCats.get(name).getRustLevel();
 		}
 	}
@@ -218,35 +259,35 @@ public class Shelter {
 	public int getChargeLevel(String name) {
 		if (rDogs.containsKey(name)) {
 			return rDogs.get(name).getChargeLevel();
-		}else {
+		} else {
 			return rCats.get(name).getChargeLevel();
 		}
 	}
 
 	public int getHungerLevel(String name) {
-		if(oDogs.containsKey(name)) {
+		if (oDogs.containsKey(name)) {
 			return oDogs.get(name).getHunger();
-		}else {
+		} else {
 			return oCats.get(name).getHunger();
 		}
 	}
 
 	public int getThirstLevel(String name) {
-			if(oDogs.containsKey(name)) {
-				return oDogs.get(name).getThirst();
-			}else {
-				return oCats.get(name).getThirst();
-			}
+		if (oDogs.containsKey(name)) {
+			return oDogs.get(name).getThirst();
+		} else {
+			return oCats.get(name).getThirst();
+		}
 	}
 
 	public int getBoredomLevel(String name) {
 		if (oDogs.containsKey(name)) {
 			return oDogs.get(name).getBoredom();
-		}else if(oCats.containsKey(name)) {
+		} else if (oCats.containsKey(name)) {
 			return oCats.get(name).getBoredom();
-		}else if(rDogs.containsKey(name)) {
+		} else if (rDogs.containsKey(name)) {
 			return rDogs.get(name).getBoredom();
-		}else {
+		} else {
 			return rCats.get(name).getBoredom();
 		}
 	}

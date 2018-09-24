@@ -1,6 +1,7 @@
 package pets_amok;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -75,10 +76,9 @@ public class ShelterTest {
 	public void shouldCleanLitterBox() {
 		underTest.putOCat(ocat.getName(), ocat);
 		underTest.increasePoop();
-		int litterboxBefore = underTest.getLitterboxSoilLevel();
 		underTest.cleanLitterbox();
 		int litterboxAfter = underTest.getLitterboxSoilLevel();
-		assertThat(litterboxBefore - litterboxAfter, is(10));
+		assertThat(litterboxAfter, is(0));
 	}
 	
 	@Test
@@ -148,4 +148,6 @@ public class ShelterTest {
 		int check = underTest.getBoredomLevel(odog.getName());
 		assertThat(check, is(11));
 	}
+	
+	
 }

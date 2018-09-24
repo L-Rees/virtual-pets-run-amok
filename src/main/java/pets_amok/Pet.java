@@ -16,11 +16,11 @@ public class Pet {
 	public int getWellBeing() {
 		return wellBeing;
 	}
-	public void increaseWellBeing() {
-		
+	public void increaseWellBeing(int amount) {
+		wellBeing += amount;
 	}
-	public void decreaseBoredom() {
-		
+	public void decreaseWellBeing(int amount) {
+		wellBeing -= amount;
 	}
 	public void increaseBoredom() {
 		boredom += 1;
