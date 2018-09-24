@@ -1,4 +1,9 @@
+# Eclipse
 .classpath
 .project
-.settings
+.settings/
 bin/
+
+# Gradle
+.gradle/
+build/
