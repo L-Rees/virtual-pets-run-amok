@@ -29,4 +29,6 @@ public class Pet {
 		boredom -= 5;
 		wellBeing +=5;
 	}
+	
 }
+

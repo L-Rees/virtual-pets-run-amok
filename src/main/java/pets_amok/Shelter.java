@@ -116,21 +116,18 @@ public class Shelter {
 		}
 	}
 
-	public void playWithODog(String name) {
-		oDogs.get(name).play();
+	public void playWithPet(String name) {
+		if (oDogs.containsKey(name)) {
+			oDogs.get(name).play();
+		}else if (oCats.containsKey(name)) {
+			oCats.get(name).play();
+		}else if (rDogs.containsKey(name)) {
+			rDogs.get(name).play();
+		}else if (rCats.containsKey(name)) {
+			rCats.get(name).play();
+		}
 	}
-
-	public void playWithOCat(String name) {
-		oCats.get(name).play();
-	}
-
-	public void playWithRCat(String name) {
-		rCats.get(name).play();
-	}
-
-	public void playWithRDog(String name) {
-		rDogs.get(name).play();
-	}
+	
 
 	// if this is true, app should prompt for a different name on intake.
 	public boolean nameCheck(String name) {
@@ -318,4 +315,84 @@ public class Shelter {
 			return rCats.get(name).getBoredom();
 		}
 	}
+	
+	String mainMenu = "1  Feed all the organic pets" +
+			"2  Water all the organic pets" +
+			"3  Play with an individual pet" + 
+			"4  Charge the batteries of all the robotic pets" +
+			"5  Oil all the robotic pets" + 
+			"6  Clean all the organic dogs' cages" +
+			"7  Clean the organic cats' litterbox" +
+			"8  Admit a new pet to the shelter"+
+			"9  Adopt a pet out of the shelter"+
+			"10  Exit the shelter";
+	
+	String typeMenu = 
+			"\n1  Robotic Dog" +
+			"\n2  Organic Dog" +
+			"\n3  Robotic Cat"+
+			"\n4  Organic Cat";
+
+	public void importpets() {
+		rDogs.put("Poochie", new RDog("Poochie"));
+		rCats.put("Scratchy", new RCat("Scratchy"));
+		oDogs.put("Santos L Halper", new ODog("Santos L Halper"));
+		oCats.put("Snowball II", new OCat("Snowball II"));
+		
+	}
+
+	public void putNamedRDog(String nameInput) {
+		rDogs.put(nameInput, new RDog(nameInput));
+	}
+
+	public void putNamedODog(String nameInput) {
+		oDogs.put(nameInput, new ODog(nameInput));
+	}
+
+	public void putNamedRCat(String nameInput) {
+		rCats.put(nameInput, new RCat(nameInput));
+	}
+
+	public void putNamedOCat(String nameInput) {
+		oCats.put(nameInput, new OCat(nameInput));
+	}
+
+	public String getRDogList() {
+		String list = "";
+		for (RDog rdog : rDogs.values()) {
+			list += rdog.getName() + "\n";
+		}
+		return list;
+	}
+	public String getODogList() {
+		String list = "";
+		for (ODog odog : oDogs.values()) {
+			list += odog.getName() + "\n";
+		}
+		return list;
+	}
+	public String getRCatList() {
+		String list = "";
+		for (RCat rcat : rCats.values()) {
+			list += rcat.getName() + "\n";
+		}
+		return list;
+	}
+	
+	public String getOCatList() {
+		String list = "";
+		for (OCat ocat : oCats.values()) {
+			list += ocat.getName() + "\n";
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

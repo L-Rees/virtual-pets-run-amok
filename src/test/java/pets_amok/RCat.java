@@ -9,5 +9,12 @@ public class RCat extends RoboticPet {
 		this.chargeLevel = chargeLevel;
 		this.rustLevel = rustLevel;
 	}
+	public RCat(String name) {
+		this.name = name;
+		boredom = 1;
+		wellBeing = 10;
+		chargeLevel = 10;
+		rustLevel = 1;
+	}
 
 }

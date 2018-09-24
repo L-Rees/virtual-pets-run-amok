@@ -15,6 +15,13 @@ public class ODog extends OrganicPet  implements Walkies {
 		this.hunger = hunger;
 		this.thirst = thirst;
 	}
+	public ODog(String name) {
+		this.name = name;
+		boredom = 1;
+		wellBeing = 10;
+		hunger = 1;
+		thirst = 1;
+	}
 
 	@Override
 	public void walk() {

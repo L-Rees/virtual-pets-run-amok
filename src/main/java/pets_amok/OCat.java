@@ -8,7 +8,13 @@ public class OCat extends OrganicPet {
 		this.wellBeing = wellBeing;
 		this.hunger = hunger;
 		this.thirst = thirst;
-
+	}
+	public OCat(String name) {
+		this.name = name;
+		boredom = 1;
+		wellBeing = 10;
+		hunger = 1;
+		thirst = 1;
 	}
 
 	@Override
