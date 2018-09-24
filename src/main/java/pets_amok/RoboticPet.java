@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class RoboticPet extends Pets {
+public class RoboticPet extends Pet {
 
 	protected int chargeLevel;
 	protected int rustLevel;
@@ -26,7 +26,10 @@ public class RoboticPet extends Pets {
 	}
 	public void increaseRust() {
 		rustLevel +=1;
-		
 	}
+	public void decreaseCharge() {
+		chargeLevel -= 2;
+	}
+	
 
 }

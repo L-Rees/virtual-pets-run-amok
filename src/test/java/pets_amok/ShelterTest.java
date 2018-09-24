@@ -120,4 +120,32 @@ public class ShelterTest {
 		int check = underTest.getRustLevel(rcat.getName());
 		assertThat(check, is(11));
 	}
+	@Test
+	public void chargeLevelDecreasesWithTick() {
+		underTest.putRCat(rcat.getName(), rcat);
+		underTest.tick();
+		int check = underTest.getChargeLevel(rcat.getName());
+		assertThat(check, is(8));
+	}
+	@Test
+	public void hungerShouldIncreaseWithTick() {
+		underTest.putODog(odog.getName(), odog);
+		underTest.tick();
+		int check = underTest.getHungerLevel(odog.getName());
+		assertThat(check, is(11));
+	}
+	@Test
+	public void thirstShouldIncreaseWithTick() {
+		underTest.putODog(odog.getName(), odog);
+		underTest.tick();
+		int check = underTest.getThirstLevel(odog.getName());
+		assertThat(check, is(11));
+	}
+	@Test
+	public void boredomShouldIncreaseWithTick() {
+		underTest.putODog(odog.getName(), odog);
+		underTest.tick();
+		int check = underTest.getBoredomLevel(odog.getName());
+		assertThat(check, is(11));
+	}
 }

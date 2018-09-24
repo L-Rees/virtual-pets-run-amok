@@ -151,7 +151,51 @@ public class Shelter {
 
 	public void tick() {
 		increaseAllRust();
+		decreaseAllCharge();
+		increaseAllHunger();
+		increaseAllThirst();
+		increaseAllBoredom();
+	}
+
+	private void increaseAllBoredom() {
+		for(ODog odog : getAllODogs()) {
+			odog.increaseBoredom();
+		}
+		for (OCat ocat : getAllOCats()) {
+			ocat.increaseBoredom();
+		}
+		for (RDog rdog : getAllRDogs()) {
+			rdog.increaseBoredom();
+		}
+		for (RCat rcat : getAllRCats()){
+			rcat.increaseBoredom();
+		}
+	}
+
+	private void increaseAllThirst() {
+		for(ODog odog : getAllODogs()) {
+			odog.increaseThirst();
+		}for (OCat ocat : getAllOCats()) {
+			ocat.increaseThirst();
+		}
 		
+	}
+
+	private void increaseAllHunger() {
+		for(ODog odog : getAllODogs()) {
+			odog.increaseHunger();
+		}for (OCat ocat : getAllOCats()) {
+			ocat.increaseHunger();
+		}
+	}
+
+	private void decreaseAllCharge() {
+		for (RDog rdog : getAllRDogs()) {
+			rdog.decreaseCharge();
+		}
+		for (RCat rcat : getAllRCats()) {
+			rcat.decreaseCharge();
+		} 
 	}
 
 	private void increaseAllRust() {
@@ -168,6 +212,42 @@ public class Shelter {
 			return rDogs.get(name).getRustLevel();
 		}else {
 			return rCats.get(name).getRustLevel();
+		}
+	}
+
+	public int getChargeLevel(String name) {
+		if (rDogs.containsKey(name)) {
+			return rDogs.get(name).getChargeLevel();
+		}else {
+			return rCats.get(name).getChargeLevel();
+		}
+	}
+
+	public int getHungerLevel(String name) {
+		if(oDogs.containsKey(name)) {
+			return oDogs.get(name).getHunger();
+		}else {
+			return oCats.get(name).getHunger();
+		}
+	}
+
+	public int getThirstLevel(String name) {
+			if(oDogs.containsKey(name)) {
+				return oDogs.get(name).getThirst();
+			}else {
+				return oCats.get(name).getThirst();
+			}
+	}
+
+	public int getBoredomLevel(String name) {
+		if (oDogs.containsKey(name)) {
+			return oDogs.get(name).getBoredom();
+		}else if(oCats.containsKey(name)) {
+			return oCats.get(name).getBoredom();
+		}else if(rDogs.containsKey(name)) {
+			return rDogs.get(name).getBoredom();
+		}else {
+			return rCats.get(name).getBoredom();
 		}
 	}
 }
