@@ -389,7 +389,7 @@ public class Shelter {
 			status += "\nRobotic Dogs\n______________"
 					+ "\nName\t\tWell-Being\tBoredom\t\tBattery\t\tRustiness";
 			for (RDog rdog : rDogs.values()) {
-				status += "\n" + rdog.getName() + "\t\t" + showLevel(rdog.getWellBeing()) + "\t"
+				status += "\n" + stringFix(rdog.getName()) + "\t" + showLevel(rdog.getWellBeing()) + "\t"
 						+ showLevel(rdog.getBoredom()) + "\t" + showLevel(rdog.getChargeLevel()) + "\t"
 						+ showLevel(rdog.getRustLevel());
 			}
@@ -400,7 +400,7 @@ public class Shelter {
 			status += "\n\nRobotic Cats\n______________"
 					+ "\nName\t\tWell-Being\tBoredom\t\tBattery\t\tRustiness";
 			for (RCat rcat : rCats.values()) {
-				status += "\n" + rcat.getName() + "\t" + showLevel(rcat.getWellBeing()) + "\t"
+				status += "\n" + stringFix(rcat.getName()) + "\t" + showLevel(rcat.getWellBeing()) + "\t"
 						+ showLevel(rcat.getBoredom()) + "\t" + showLevel(rcat.getChargeLevel()) + "\t"
 						+ showLevel(rcat.getRustLevel());
 			}
@@ -411,7 +411,7 @@ public class Shelter {
 			status += "\n\nOrganic Dogs\n______________"
 					+ "\nName\t\tWell-Being\tBoredom\t\tHunger\t\tThirst";
 			for (ODog odog : oDogs.values()) {
-				status += "\n" + odog.getName() + "\t" + showLevel(odog.getWellBeing()) + "\t"
+				status += "\n" + stringFix(odog.getName()) + "\t" + showLevel(odog.getWellBeing()) + "\t"
 						+ showLevel(odog.getBoredom()) + "\t" + showLevel(odog.getHunger()) + "\t"
 						+ showLevel(odog.getThirst());
 			}
@@ -422,9 +422,9 @@ public class Shelter {
 			status += "\n\nOrganic Cats\n______________"
 					+ "\nName\t\tWell-Being\tBoredom\t\tHunger\t\tThirst";
 			for (OCat ocat : oCats.values()) {
-				status += "\n" + ocat.getName() + "\t" + showLevel(ocat.getWellBeing()) + "\t"
+				status += "\n" + stringFix(ocat.getName()) + "\t" + showLevel(ocat.getWellBeing()) + "\t"
 						+ showLevel(ocat.getBoredom()) + "\t" + showLevel(ocat.getHunger()) + "\t"
-						+ showLevel(ocat.getThirst()) + "\n";
+						+ showLevel(ocat.getThirst());
 			}
 		} else {
 			status += "\nYou do not have any organic cats";
@@ -441,13 +441,20 @@ public class Shelter {
 		for (int i = 0; i < 10 - quality; i++) {
 			level = level + ".";
 		}
-		return level;
+		return level.substring(0, 10);
 
 		// good-||||......-bad
 	}
-	public String nameFix(String name) {
-		String newName = "";
-		return newName;
+	public String stringFix(String name) {
+		String newString = name;
+		if (name.length()<15) {
+			for (int x = 0; x < 15-name.length(); x++) {
+				newString += " ";
+			}
+		}else {
+			newString = name.substring(0, 15);
+		}
+		return newString;
 	}
 
 }
