@@ -154,6 +154,7 @@ public class Shelter {
 	public void adoptpet(String name) {
 		if (oDogs.containsKey(name)) {
 			oDogs.remove(name);
+			cages.remove(name);
 			adoptedPetCount++;
 		} else if (oCats.containsKey(name)) {
 			oCats.remove(name);
