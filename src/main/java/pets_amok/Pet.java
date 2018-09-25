@@ -4,11 +4,14 @@ public class Pet {
 	protected int boredom;
 	protected String name;
 	protected int wellBeing;
+	protected String description;
 
 	public int getBoredom() {
 		return boredom;
 	}
-
+	public String getDescription() {
+		return description;
+	}
 	public String getName() {
 		return name;
 	}

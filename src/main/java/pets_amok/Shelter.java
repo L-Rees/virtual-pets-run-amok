@@ -61,6 +61,7 @@ public class Shelter {
 		for (ODog odog : getAllODogs()) {
 			odog.feed();
 		}
+		System.out.println("All the organic animals in the shelter have full tummies.");	
 	}
 
 	public void waterAllOrganicPets() {
@@ -70,6 +71,7 @@ public class Shelter {
 		for (ODog odog : getAllODogs()) {
 			odog.water();
 		}
+		System.out.println("All the organic animals in the shelter have quenched their thirst.");
 	}
 
 	public void chargeAllRoboticPets() {
@@ -79,6 +81,7 @@ public class Shelter {
 		for (RDog rdog : getAllRDogs()) {
 			rdog.charge();
 		}
+		System.out.println("The robotic pets in the shelter have been recharged.");
 	}
 
 	public void oilAllRoboticPets() {
@@ -88,10 +91,15 @@ public class Shelter {
 		for (RDog rdog : getAllRDogs()) {
 			rdog.oil();
 		}
+		System.out.println("The robotic pets in the shelter have been oiled.");
 	}
 
 	public void cleanLitterbox() {
 		litterboxSoilLevel = 0;
+		for (OCat ocat : oCats.values()) {
+			ocat.increaseWellBeing(3);
+		}
+		System.out.println("The organic cats in the shelter are pleased that you have finally done your duty.");
 	}
 
 	public void increasePoop() {
@@ -116,37 +124,49 @@ public class Shelter {
 		for (Cage cage : getAllCages()) {
 			cage.clean();
 		}
+		System.out.println("All the organic dogs in the shelter have had their cages cleaned.");
 	}
 
 	public void playWithPet(String name) {
 		if (oDogs.containsKey(name)) {
 			oDogs.get(name).play();
+			System.out.println(name + " is so very happy you played with them. " + name + " is a good dog! Yes they are!");
 		} else if (oCats.containsKey(name)) {
 			oCats.get(name).play();
+			System.out.println(name + " is pleased that even a puny human such as yourself was able to see their majesty.");
 		} else if (rDogs.containsKey(name)) {
 			rDogs.get(name).play();
+			System.out.println(name + "'s circuits exhibit increased activity after human interaction.");
 		} else if (rCats.containsKey(name)) {
 			rCats.get(name).play();
+			System.out.println(name + " has added its observations of your behavior to its records. Soon it will have enough data. Soon.");
+		}else {
+			System.out.println("There is no pet by that name in the shelter.");
 		}
 	}
 
 	// if this is true, app should prompt for a different name on intake.
 	public boolean nameCheck(String name) {
-		return (rDogs.containsKey(name) && rCats.containsKey(name) && oDogs.containsKey(name)
-				&& oCats.containsKey(name));
+		return (rDogs.containsKey(name) || rCats.containsKey(name) || oDogs.containsKey(name)
+				|| oCats.containsKey(name));
 	}
 
 	public void adoptpet(String name) {
 		if (oDogs.containsKey(name)) {
 			oDogs.remove(name);
+			adoptedPetCount++;
 		} else if (oCats.containsKey(name)) {
 			oCats.remove(name);
+			adoptedPetCount++;
 		} else if (rDogs.containsKey(name)) {
 			rDogs.remove(name);
+			adoptedPetCount++;
 		} else if (rCats.containsKey(name)) {
 			rCats.remove(name);
+			adoptedPetCount++;
+		}else {
+			System.out.println("There is no pet in the shelter by that name.");
 		}
-		adoptedPetCount++;
 	}
 
 	public int getAdoptedPetCount() {
@@ -209,14 +229,14 @@ public class Shelter {
 			int boredness = rdog.getBoredom();
 			int rustiness = rdog.getRustLevel();
 			int power = rdog.getChargeLevel();
-			int modifier = (boredness + rustiness - power) / 2;
+			int modifier = (boredness + rustiness - (power/2)) / 2;
 			rdog.decreaseWellBeing(modifier);
 		}
 		for (RCat rcat : rCats.values()) {
 			int boredness = rcat.getBoredom();
 			int rustiness = rcat.getRustLevel();
 			int power = rcat.getChargeLevel();
-			int modifier = (boredness + rustiness - power) / 2;
+			int modifier = (boredness + rustiness - (power/2)) / 2;
 			rcat.decreaseWellBeing(modifier);
 		}
 	}
@@ -317,7 +337,7 @@ public class Shelter {
 		}
 	}
 
-	String mainMenu = "\n\n1  Feed all the organic pets" + "\n2  Water all the organic pets"
+	String mainMenu = "\n\nPlease choose an option below" +"\n1  Feed all the organic pets" + "\n2  Water all the organic pets"
 			+ "\n3  Play with an individual pet" + "\n4  Charge the batteries of all the robotic pets"
 			+ "\n5  Oil all the robotic pets" + "\n6  Clean all the organic dogs' cages"
 			+ "\n7  Clean the organic cats' litterbox" + "\n8  Admit a new pet to the shelter"
@@ -326,35 +346,35 @@ public class Shelter {
 	String typeMenu = "\n1  Robotic Dog" + "\n2  Organic Dog" + "\n3  Robotic Cat" + "\n4  Organic Cat";
 
 	public void importpets() {
-		rDogs.put("Poochie", new RDog("Poochie"));
-		rCats.put("Scratchy", new RCat("Scratchy"));
-		oDogs.put("Santos L Halper", new ODog("Santos L Halper"));
+		rDogs.put("Poochie", new RDog("Poochie", "Tries to be cool"));
+		rCats.put("Scratchy", new RCat("Scratchy", "A big bug-eyed"));
+		oDogs.put("Santos L Halper", new ODog("Santos L Halper", "Dumb but loyal"));
 		cages.put("Santos L Halper", new Cage());
-		oCats.put("Snowball II", new OCat("Snowball II"));
+		oCats.put("Snowball II", new OCat("Snowball II", "Black as night"));
 
 	}
 
-	public void putNamedRDog(String nameInput) {
-		rDogs.put(nameInput, new RDog(nameInput));
+	public void putNamedRDog(String nameInput, String descriptionInput) {
+		rDogs.put(nameInput, new RDog(nameInput, descriptionInput));
 	}
 
-	public void putNamedODog(String nameInput) {
-		oDogs.put(nameInput, new ODog(nameInput));
+	public void putNamedODog(String nameInput, String descriptionInput) {
+		oDogs.put(nameInput, new ODog(nameInput, descriptionInput));
 		cages.put(nameInput, new Cage());
 	}
 
-	public void putNamedRCat(String nameInput) {
-		rCats.put(nameInput, new RCat(nameInput));
+	public void putNamedRCat(String nameInput, String descriptionInput) {
+		rCats.put(nameInput, new RCat(nameInput, descriptionInput));
 	}
 
-	public void putNamedOCat(String nameInput) {
-		oCats.put(nameInput, new OCat(nameInput));
+	public void putNamedOCat(String nameInput, String descriptionInput) {
+		oCats.put(nameInput, new OCat(nameInput, descriptionInput));
 	}
 
 	public String getRDogList() {
 		String list = "";
 		for (RDog rdog : rDogs.values()) {
-			list += rdog.getName() + "\n";
+			list += rdog.getName() + "\t" + rdog.getDescription() + "\n";
 		}
 		return list;
 	}
@@ -362,7 +382,7 @@ public class Shelter {
 	public String getODogList() {
 		String list = "";
 		for (ODog odog : oDogs.values()) {
-			list += odog.getName() + "\n";
+			list += odog.getName() + "\t" + odog.getDescription() + "\n";
 		}
 		return list;
 	}
@@ -370,7 +390,7 @@ public class Shelter {
 	public String getRCatList() {
 		String list = "";
 		for (RCat rcat : rCats.values()) {
-			list += rcat.getName() + "\n";
+			list += rcat.getName() + "\t" + rcat.getDescription() + "\n";
 		}
 		return list;
 	}
@@ -378,7 +398,7 @@ public class Shelter {
 	public String getOCatList() {
 		String list = "";
 		for (OCat ocat : oCats.values()) {
-			list += ocat.getName() + "\n";
+			list += ocat.getName() + "\t" + ocat.getDescription() + "\n";
 		}
 		return list;
 	}
@@ -386,7 +406,7 @@ public class Shelter {
 	public String shelterStatus() {
 		String status = "\n\n\t\t\t\tPetStatus\n";
 		if (rDogs.size() > 0) {
-			status += "\nRobotic Dogs\n______________"
+			status += "\nRobotic Dogs\n"
 					+ "\nName\t\tWell-Being\tBoredom\t\tBattery\t\tRustiness";
 			for (RDog rdog : rDogs.values()) {
 				status += "\n" + stringFix(rdog.getName()) + "\t" + showLevel(rdog.getWellBeing()) + "\t"
@@ -397,7 +417,7 @@ public class Shelter {
 			status += "You do not have any robotic dogs";
 		}
 		if (rCats.size() > 0) {
-			status += "\n\nRobotic Cats\n______________"
+			status += "\n\n______________\nRobotic Cats"
 					+ "\nName\t\tWell-Being\tBoredom\t\tBattery\t\tRustiness";
 			for (RCat rcat : rCats.values()) {
 				status += "\n" + stringFix(rcat.getName()) + "\t" + showLevel(rcat.getWellBeing()) + "\t"
@@ -408,18 +428,18 @@ public class Shelter {
 			status += "\nYou do not have any robotic cats";
 		}
 		if (oDogs.size() > 0) {
-			status += "\n\nOrganic Dogs\n______________"
-					+ "\nName\t\tWell-Being\tBoredom\t\tHunger\t\tThirst";
+			status += "\n\n______________\nOrganic Dogs"
+					+ "\nName\t\tWell-Being\tBoredom\t\tHunger\t\tThirst\t\tCage Soil Level";
 			for (ODog odog : oDogs.values()) {
 				status += "\n" + stringFix(odog.getName()) + "\t" + showLevel(odog.getWellBeing()) + "\t"
 						+ showLevel(odog.getBoredom()) + "\t" + showLevel(odog.getHunger()) + "\t"
-						+ showLevel(odog.getThirst());
+						+ showLevel(odog.getThirst()) + "\t" + showLevel(getCageSoilLevel(odog.getName()));
 			}
 		} else {
 			status += "\nYou do not have any organic dogs";
 		}
 		if (oCats.size() > 0) {
-			status += "\n\nOrganic Cats\n______________"
+			status += "\n\n______________\nOrganic Cats\t\tLitterbox Soil Level   " + showLevel(getLitterboxSoilLevel())
 					+ "\nName\t\tWell-Being\tBoredom\t\tHunger\t\tThirst";
 			for (OCat ocat : oCats.values()) {
 				status += "\n" + stringFix(ocat.getName()) + "\t" + showLevel(ocat.getWellBeing()) + "\t"

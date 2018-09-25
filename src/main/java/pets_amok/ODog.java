@@ -8,15 +8,17 @@ public class ODog extends OrganicPet  implements Walkies {
 	public int getPoopChance() {
 		return poopChance;
 	}
-	public ODog(String name, int boredom, int wellBeing, int hunger, int thirst) {
+	public ODog(String name, int boredom, int wellBeing, int hunger, int thirst, String description) {
 		this.name = name;
 		this.boredom = boredom;
 		this.wellBeing = wellBeing;
 		this.hunger = hunger;
 		this.thirst = thirst;
+		this.description = description;
 	}
-	public ODog(String name) {
+	public ODog(String name, String description) {
 		this.name = name;
+		this.description = description;
 		boredom = 1;
 		wellBeing = 10;
 		hunger = 1;

@@ -24,16 +24,16 @@ public abstract class OrganicPet extends Pet {
 	}
 
 	public void increaseHunger() {
-		hunger += 1;
+		hunger += 3;
 	}
 
 	public void increaseThirst() {
-		thirst += 1;
+		thirst += 3;
 	}
 
 	public void water() {
-		thirst -= 5;
-		wellBeing +=3;
+		thirst = 0;
+		wellBeing +=5;
 	}
 
 	public abstract int poopAmount();

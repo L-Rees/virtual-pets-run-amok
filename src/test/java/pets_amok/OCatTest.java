@@ -6,7 +6,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 public class OCatTest {
-	OrganicPet ocat = new OCat("name", 10, 9, 8, 7);
+	OrganicPet ocat = new OCat("name", 10, 9, 8, 7, "description");
 
 	@Test
 	public void shouldRenderOCatProperties() {

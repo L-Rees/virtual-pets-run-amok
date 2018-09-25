@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class ODogTest {
 	
-	ODog odog = new ODog("name", 10,10,3,4);
+	ODog odog = new ODog("name", 10,10,3,4, "description");
 
 	@Test 
 	public void shouldRenderODogProperties() {

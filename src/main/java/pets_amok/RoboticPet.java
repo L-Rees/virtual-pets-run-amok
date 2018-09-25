@@ -28,11 +28,11 @@ public class RoboticPet extends Pet {
 	}
 
 	public void increaseRust() {
-		rustLevel += 1;
+		rustLevel += 4;
 	}
 
 	public void decreaseCharge() {
-		chargeLevel -= 2;
+		chargeLevel -= 4;
 	}
 
 }

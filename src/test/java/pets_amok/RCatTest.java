@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class RCatTest {
 
-	RoboticPet rcat = new RCat("name", 10, 9, 8, 7);
+	RoboticPet rcat = new RCat("name", 10, 9, 8, 7, "desc");
 	
 	@Test
 	public void shouldHaveBoredomOf10() {

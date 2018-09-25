@@ -11,10 +11,10 @@ import org.junit.Test;
 public class ShelterTest {
 
 	Shelter underTest = new Shelter();
-	RCat rcat = new RCat("Scratchy", 10, 10, 10, 10);
-	ODog odog = new ODog("Rover", 10, 10, 10, 10);
-	OCat ocat = new OCat("Fluffy", 10, 10, 10, 10);
-	RDog rdog = new RDog("Rusty", 10, 10, 10, 10);
+	RCat rcat = new RCat("Scratchy", 10, 10, 10, 10, "desc");
+	ODog odog = new ODog("Rover", 10, 10, 10, 10, "desc");
+	OCat ocat = new OCat("Fluffy", 10, 10, 10, 10, "desc");
+	RDog rdog = new RDog("Rusty", 10, 10, 10, 10, "desc");
 
 	@Test
 	public void shouldAddOrgDogToTheShelter() {
@@ -117,14 +117,14 @@ public class ShelterTest {
 		underTest.putRCat(rcat.getName(), rcat);
 		underTest.tick();
 		int check = underTest.getRustLevel(rcat.getName());
-		assertThat(check, is(11));
+		assertThat(check, is(13));
 	}
 	@Test
 	public void chargeLevelDecreasesWithTick() {
 		underTest.putRCat(rcat.getName(), rcat);
 		underTest.tick();
 		int check = underTest.getChargeLevel(rcat.getName());
-		assertThat(check, is(8));
+		assertThat(check, is(7));
 	}
 	@Test
 	public void hungerShouldIncreaseWithTick() {

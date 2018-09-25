@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class RDogTest {
 
-	RDog rdog = new RDog("name", 10, 9, 8,7);
+	RDog rdog = new RDog("name", 10, 9, 8,7, "description");
 	
 	@Test
 	public void shouldRenderRDogProperties() {

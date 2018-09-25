@@ -11,7 +11,7 @@ public class AmokApp {
 		System.out.println(
 				"Welcome to Lisa's Shelter for Virtual Pets!\n\nThank you for volunteering to care for our pets, both robotic and organic.");
 		System.out.println(
-				"\n\nPlease choose from an option below, or type add if you'd like to add a basic list of pets.");
+				"\n\nType add if you'd like to add a basic list of pets.");
 		String menuChoice = "";
 		while (!menuChoice.equals("10")) {
 			for (int x = 0; x < 3; x++) {
@@ -30,22 +30,23 @@ public class AmokApp {
 					String playChoice = input.nextLine();
 					if (playChoice.equals("1")) {
 						System.out.println(
-								"Here is a list of all the robotic dogs in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+								"Here is a list of all the robotic dogs in the shelter. \nEnter the name of the one you'd like to play with.\n");
 						System.out.println(myShelter.getRDogList());
 					} else if (playChoice.equals("2")) {
 						System.out.println(
-								"Here is a list of all the organic dogs in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+								"Here is a list of all the organic dogs in the shelter. \nEnter the name of the one you'd like to play with.\n");
 						System.out.println(myShelter.getODogList());
 					} else if (playChoice.equals("3")) {
 						System.out.println(
-								"Here is a list of all the robotic cats in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+								"Here is a list of all the robotic cats in the shelter. \nEnter the name of the one you'd like to play with.\n");
+						System.out.println(myShelter.getRCatList());
 					} else if (playChoice.equals("4")) {
 						System.out.println(
-								"Here is a list of all the organic cats in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+								"Here is a list of all the organic cats in the shelter. \nEnter the name of the one you'd like to play with.\n");
+						System.out.println(myShelter.getOCatList());
 					}
 					String playName = input.nextLine();
 					myShelter.playWithPet(playName);
-					System.out.println("You played with " + playName + " and made them very happy.");
 				} else if (menuChoice.equals("4")) {
 					myShelter.chargeAllRoboticPets();
 				} else if (menuChoice.equals("5")) {
@@ -59,17 +60,21 @@ public class AmokApp {
 					System.out.println(myShelter.typeMenu);
 					String typeChoice = input.nextLine();
 					System.out.println("What is the pet's name?");
-					String nameInput = input.nextLine();
+					String nameInput = input.nextLine().trim();
 					boolean validName = false;
+					if (!myShelter.nameCheck(nameInput)) {
+						validName = true;
+					}
 					while (!validName) {
-						if (myShelter.nameCheck(nameInput) == false) {
-							validName = true;
-						} else {
 							System.out.println(
 									"That name is already in use in the shelter. Please enter a different name.");
 							nameInput = input.nextLine();
-						}
+							if (!myShelter.nameCheck(nameInput)) {
+								validName = true;
+							} 
 					}
+					System.out.println("Please enter a brief description of the pet.");
+					String descriptionEntry = input.nextLine();
 					System.out.println("Would you like to enter any stats for " + nameInput + "? (y/n)");
 					String entryChoice = input.nextLine();
 					int boredomEntry = 0;
@@ -103,27 +108,27 @@ public class AmokApp {
 							thirstEntry = input.nextInt();
 						}
 						if (typeChoice.equals("1")) {
-							myShelter.putRDog(nameInput,
-									new RDog(nameInput, boredomEntry, wellBeingEntry, chargeEntry, rustEntry));
+							myShelter.putRDog(nameInput, new RDog(nameInput, boredomEntry, wellBeingEntry, chargeEntry,
+									rustEntry, descriptionEntry));
 						} else if (typeChoice.equals("2")) {
-							myShelter.putODog(nameInput,
-									new ODog(nameInput, boredomEntry, wellBeingEntry, hungerEntry, thirstEntry));
+							myShelter.putODog(nameInput, new ODog(nameInput, boredomEntry, wellBeingEntry, hungerEntry,
+									thirstEntry, descriptionEntry));
 						} else if (typeChoice.equals("3")) {
-							myShelter.putRCat(nameInput,
-									new RCat(nameInput, boredomEntry, wellBeingEntry, chargeEntry, rustEntry));
+							myShelter.putRCat(nameInput, new RCat(nameInput, boredomEntry, wellBeingEntry, chargeEntry,
+									rustEntry, descriptionEntry));
 						} else if (typeChoice.equals("4")) {
-							myShelter.putOCat(nameInput,
-									new OCat(nameInput, boredomEntry, wellBeingEntry, hungerEntry, thirstEntry));
+							myShelter.putOCat(nameInput, new OCat(nameInput, boredomEntry, wellBeingEntry, hungerEntry,
+									thirstEntry, descriptionEntry));
 						}
 					} else {
 						if (typeChoice.equals("1")) {
-							myShelter.putNamedRDog(nameInput);
+							myShelter.putNamedRDog(nameInput, descriptionEntry);
 						} else if (typeChoice.equals("2")) {
-							myShelter.putNamedODog(nameInput);
+							myShelter.putNamedODog(nameInput, descriptionEntry);
 						} else if (typeChoice.equals("3")) {
-							myShelter.putNamedRCat(nameInput);
+							myShelter.putNamedRCat(nameInput, descriptionEntry);
 						} else if (typeChoice.equals("4")) {
-							myShelter.putNamedOCat(nameInput);
+							myShelter.putNamedOCat(nameInput, descriptionEntry);
 						}
 					}
 				} else if (menuChoice.equals("9")) {
@@ -142,20 +147,20 @@ public class AmokApp {
 					} else if (adoptChoice.equals("3")) {
 						System.out.println(
 								"Here is a list of all the robotic cats in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+						System.out.println(myShelter.getRCatList());
 					} else if (adoptChoice.equals("4")) {
 						System.out.println(
 								"Here is a list of all the organic cats in the shelter. \nEnter the name of the one you'd like to adopt.\n");
+						System.out.println(myShelter.getOCatList());
 					}
 					String nameChoice = input.nextLine();
 					myShelter.adoptpet(nameChoice);
 					System.out.println(nameChoice + " has been adopted and left the shelter! You have helped "
 							+ myShelter.getAdoptedPetCount() + " pets find a new home.");
 				}
-				System.out.println("Please choose an option from the menu");
-
 			}
 			myShelter.tick();
-			
+
 		}
 
 		System.out.println("Thank you for volunteering at Lisa's Shelter for Virtual Pets!\nYou have helped "
