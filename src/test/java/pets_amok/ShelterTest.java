@@ -1,6 +1,7 @@
 package pets_amok;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -148,5 +149,11 @@ public class ShelterTest {
 		assertThat(check, is(11));
 	}
 	
-	
+	@Test
+	public void shouldHaveOdogInshelter() {
+		underTest.putODog(odog.getName(), odog);
+		Collection<ODog> odogs = underTest.getAllODogs();
+		assertThat(odogs, contains("Rover"));
+		
+	}
 }
