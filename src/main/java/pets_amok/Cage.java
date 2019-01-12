@@ -7,11 +7,13 @@ public class Cage {
 	public void poopInCage(int amount) {
 		cageSoilLevel += amount;
 	}
+
 	public int getCageSoilLevel() {
 		return cageSoilLevel;
 	}
+
 	public void clean() {
 		cageSoilLevel = 0;
-		
+
 	}
 }

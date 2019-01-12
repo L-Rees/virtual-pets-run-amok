@@ -10,8 +10,7 @@ public class AmokApp {
 
 		System.out.println(
 				"Welcome to Lisa's Shelter for Virtual Pets!\n\nThank you for volunteering to care for our pets, both robotic and organic.");
-		System.out.println(
-				"\n\nType add if you'd like to add a basic list of pets.");
+		System.out.println("\n\nType add if you'd like to add a basic list of pets.");
 		String menuChoice = "";
 		while (!menuChoice.equals("10")) {
 			for (int x = 0; x < 3; x++) {
@@ -66,12 +65,12 @@ public class AmokApp {
 						validName = true;
 					}
 					while (!validName) {
-							System.out.println(
-									"That name is already in use in the shelter. Please enter a different name.");
-							nameInput = input.nextLine();
-							if (!myShelter.nameCheck(nameInput)) {
-								validName = true;
-							} 
+						System.out
+								.println("That name is already in use in the shelter. Please enter a different name.");
+						nameInput = input.nextLine();
+						if (!myShelter.nameCheck(nameInput)) {
+							validName = true;
+						}
 					}
 					System.out.println("Please enter a brief description of the pet.");
 					String descriptionEntry = input.nextLine();

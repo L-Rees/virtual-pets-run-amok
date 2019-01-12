@@ -1,13 +1,13 @@
 package pets_amok;
 
-public class ODog extends OrganicPet  implements Walkies {
+public class ODog extends OrganicPet implements Walkies {
 
-	private int poopChance = 1;  //will be 0 if walked, 1 if they weren't. resets to 1 at tick.
+	private int poopChance = 1; // will be 0 if walked, 1 if they weren't. resets to 1 at tick.
 
-	
 	public int getPoopChance() {
 		return poopChance;
 	}
+
 	public ODog(String name, int boredom, int wellBeing, int hunger, int thirst, String description) {
 		this.name = name;
 		this.boredom = boredom;
@@ -16,6 +16,7 @@ public class ODog extends OrganicPet  implements Walkies {
 		this.thirst = thirst;
 		this.description = description;
 	}
+
 	public ODog(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -36,6 +37,7 @@ public class ODog extends OrganicPet  implements Walkies {
 	public void resetPoopChance() {
 		poopChance = 1;
 	}
+
 	@Override
 	public int poopAmount() {
 		int semiRandomPoopAmount = (int) (Math.random() * 3) + 1;

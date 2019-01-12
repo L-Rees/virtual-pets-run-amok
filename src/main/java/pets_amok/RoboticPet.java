@@ -34,10 +34,11 @@ public abstract class RoboticPet extends Pet {
 	public void decreaseCharge() {
 		chargeLevel -= 4;
 	}
+
 	@Override
 	public void play() {
 		boredom -= 5;
-		wellBeing +=5;
-		chargeLevel -=4;
+		wellBeing += 5;
+		chargeLevel -= 4;
 	}
 }

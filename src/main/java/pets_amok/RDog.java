@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class RDog extends RoboticPet implements Walkies{
+public class RDog extends RoboticPet implements Walkies {
 
 	public RDog(String name, int boredom, int wellBeing, int chargeLevel, int rustLevel, String description) {
 		this.name = name;
@@ -10,6 +10,7 @@ public class RDog extends RoboticPet implements Walkies{
 		this.rustLevel = rustLevel;
 		this.description = description;
 	}
+
 	public RDog(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -18,13 +19,11 @@ public class RDog extends RoboticPet implements Walkies{
 		chargeLevel = 10;
 		rustLevel = 1;
 	}
-	
+
 	@Override
 	public void walk() {
-		boredom -=5;
-		rustLevel -=5;
+		boredom -= 5;
+		rustLevel -= 5;
 	}
-	
-	
 
 }

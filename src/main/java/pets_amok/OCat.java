@@ -10,6 +10,7 @@ public class OCat extends OrganicPet {
 		this.thirst = thirst;
 		this.description = description;
 	}
+
 	public OCat(String name, String description) {
 		this.name = name;
 		this.description = description;
@@ -22,7 +23,7 @@ public class OCat extends OrganicPet {
 	@Override
 	public int poopAmount() {
 		int semiRandomPoopAmount = (int) (Math.random() * 3) + 1;
-		return semiRandomPoopAmount;		
+		return semiRandomPoopAmount;
 	}
 
 }

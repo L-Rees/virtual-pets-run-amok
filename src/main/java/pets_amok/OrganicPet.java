@@ -33,7 +33,7 @@ public abstract class OrganicPet extends Pet {
 
 	public void water() {
 		thirst = 0;
-		wellBeing +=5;
+		wellBeing += 5;
 	}
 
 	public abstract int poopAmount();

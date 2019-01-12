@@ -10,6 +10,7 @@ public class RCat extends RoboticPet {
 		this.rustLevel = rustLevel;
 		this.description = description;
 	}
+
 	public RCat(String name, String description) {
 		this.name = name;
 		this.description = description;
