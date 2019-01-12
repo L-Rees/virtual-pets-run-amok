@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class Pet {
+public abstract class Pet {
 	protected int boredom;
 	protected String name;
 	protected int wellBeing;

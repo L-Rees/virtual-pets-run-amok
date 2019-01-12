@@ -1,6 +1,6 @@
 package pets_amok;
 
-public class RoboticPet extends Pet {
+public abstract class RoboticPet extends Pet {
 
 	protected int chargeLevel;
 	protected int rustLevel;

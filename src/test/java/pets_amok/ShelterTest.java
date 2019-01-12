@@ -2,6 +2,7 @@ package pets_amok;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -21,28 +22,28 @@ public class ShelterTest {
 	public void shouldAddOrgDogToTheShelter() {
 		underTest.putODog(odog.getName(), odog);
 		Collection<ODog> allODogs = underTest.getAllODogs();
-		assertThat(allODogs.size(), is(1));
+		assertEquals(allODogs.size(), is(1));
 	}
 
 	@Test
 	public void shouldAddOrgCatToTheShelter() {
 		underTest.putOCat(ocat.getName(), ocat);
 		Collection<OCat> allOCats = underTest.getAllOCats();
-		assertThat(allOCats.size(), is(1));
+		assertEquals(allOCats.size(), is(1));
 	}
 
 	@Test
 	public void shouldAddRoboDogToShelter() {
 		underTest.putRDog(rdog.getName(), rdog);
 		Collection<RDog> allRDogs = underTest.getAllRDogs();
-		assertThat(allRDogs.size(), is(1));
+		assertEquals(allRDogs.size(), is(1));
 	}
 
 	@Test
 	public void shouldAddRoboCatToShelter() {
 		underTest.putRCat(rcat.getName(), rcat);
 		Collection<RCat> allRCats = underTest.getAllRCats();
-		assertThat(allRCats.size(), is(1));
+		assertEquals(allRCats.size(), is(1));
 	}
 
 	@Test
@@ -51,7 +52,7 @@ public class ShelterTest {
 		int hungerBefore = ocat.getHunger();
 		underTest.feedAllOrganicPets();
 		int hungerAfter = ocat.getHunger();
-		assertThat(hungerBefore - hungerAfter, is(5));
+		assertEquals(hungerBefore - hungerAfter, is(5));
 	}
 	@Test
 	public void shouldOilRCat() {
@@ -59,7 +60,7 @@ public class ShelterTest {
 		int rustBefore = rcat.getRustLevel();
 		underTest.oilAllRoboticPets();
 		int rustAfter = rcat.getRustLevel();
-		assertThat(rustBefore - rustAfter, is(7));
+		assertEquals(rustBefore - rustAfter, is(7));
 	}
 	
 	@Test
@@ -78,14 +79,14 @@ public class ShelterTest {
 		underTest.increasePoop();
 		underTest.cleanLitterbox();
 		int litterboxAfter = underTest.getLitterboxSoilLevel();
-		assertThat(litterboxAfter, is(0));
+		assertEquals(litterboxAfter, is(0));
 	}
 	
 	@Test
 	public void ODogsShouldHaveACage() {
 		underTest.putODog(odog.getName(), odog);
 		Collection<Cage> cages = underTest.getAllCages();
-		assertThat(cages.size(), is(1));
+		assertEquals(cages.size(), is(1));
 	}
 	
 	@Test
@@ -104,49 +105,49 @@ public class ShelterTest {
 		underTest.increasePoop();
 		underTest.cleanAllCages();
 		int cageAfter = underTest.getCageSoilLevel(odog.getName());
-		assertThat(cageAfter, is(0));
+		assertEquals(cageAfter, is(0));
 	}
 	@Test
 	public void shouldBeAbleToAdoptAPet() {
 		underTest.putODog(odog.getName(), odog);
 		underTest.adoptpet(odog.getName());
 		Collection<ODog> odogs = underTest.getAllODogs();
-		assertThat(odogs.size(), is(0));
+		assertEquals(odogs.size(), is(0));
 	}
 	@Test
 	public void rustLevelIncreasesWithTick() {
 		underTest.putRCat(rcat.getName(), rcat);
 		underTest.tick();
 		int check = underTest.getRustLevel(rcat.getName());
-		assertThat(check, is(13));
+		assertEquals(check, is(13));
 	}
 	@Test
 	public void chargeLevelDecreasesWithTick() {
 		underTest.putRCat(rcat.getName(), rcat);
 		underTest.tick();
 		int check = underTest.getChargeLevel(rcat.getName());
-		assertThat(check, is(7));
+		assertEquals(check, is(7));
 	}
 	@Test
 	public void hungerShouldIncreaseWithTick() {
 		underTest.putODog(odog.getName(), odog);
 		underTest.tick();
 		int check = underTest.getHungerLevel(odog.getName());
-		assertThat(check, is(11));
+		assertEquals(check, is(11));
 	}
 	@Test
 	public void thirstShouldIncreaseWithTick() {
 		underTest.putODog(odog.getName(), odog);
 		underTest.tick();
 		int check = underTest.getThirstLevel(odog.getName());
-		assertThat(check, is(11));
+		assertEquals(check, is(11));
 	}
 	@Test
 	public void boredomShouldIncreaseWithTick() {
 		underTest.putODog(odog.getName(), odog);
 		underTest.tick();
 		int check = underTest.getBoredomLevel(odog.getName());
-		assertThat(check, is(11));
+		assertEquals(check, is(11));
 	}
 	
 	@Test
